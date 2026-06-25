@@ -1,0 +1,298 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Mi Inventario</h2>
+
+<form method="GET" class="mb-4">
+
+<div class="row g-2">
+
+    <div class="col-md-3">
+        <input
+            type="text"
+            name="buscar"
+            class="form-control"
+            placeholder="Buscar..."
+            value="{{ buscar }}"
+        >
+    </div>
+
+    <div class="col-md-2">
+
+        <select name="marca" class="form-control">
+
+            <option value="">Marca</option>
+
+            {% for m,c in marcas %}
+
+			<option
+				value="{{ m }}"
+					{% if marca == m %}selected{% endif %}
+			>
+				{{ m }} ({{ c }})
+			</option>
+
+			{% endfor %}
+
+        </select>
+
+    </div>
+
+    <div class="col-md-2">
+
+        <select name="tipo" class="form-control">
+
+            <option value="">Tipo</option>
+
+            {% for t,c in tipos %}
+
+			<option
+				value="{{ t }}"
+				{% if tipo == t %}selected{% endif %}
+			>
+				{{ t }} ({{ c }})
+			</option>
+
+			{% endfor %}
+
+        </select>
+
+    </div>
+
+    <div class="col-md-2">
+
+        <select name="epoca" class="form-control">
+
+            <option value="">Época</option>
+
+            {% for e,c in epocas %}
+
+			<option
+				value="{{ e }}"
+				{% if epoca == e %}selected{% endif %}
+			>
+				{{ e }} ({{ c }})
+			</option>
+
+			{% endfor %}
+
+        </select>
+
+    </div>
+
+	<div class="mb-3">
+
+		<a
+			class="btn btn-primary"
+			href="{{ url_for('articulos.importar') }}">
+			Importar Excel
+		</a>
+
+		<a
+			class="btn btn-info"
+			href="{{ url_for('articulos.coleccion') }}">
+			Resumen colección
+		</a>
+
+	</div>
+
+</div>
+
+<div class="row g-2 mt-2">
+
+    <div class="col-md-3">
+
+        <select name="estado" class="form-control">
+
+            <option value="">Estado</option>
+
+            {% for e,c in estados %}
+
+			<option
+				value="{{ e }}"
+				{% if estado == e %}selected{% endif %}
+			>
+				{{ e }} ({{ c }})
+			</option>
+
+			{% endfor %}
+
+        </select>
+
+    </div>
+	<div class="col-md-3">
+
+		<select
+			name="orden"
+			class="form-control"
+		>
+
+			<option value="numero"
+				{% if orden=="numero" %}selected{% endif %}
+			>
+				Ordenar por Número
+			</option>
+
+			<option value="marca"
+				{% if orden=="marca" %}selected{% endif %}
+			>
+				Ordenar por Marca
+			</option>
+
+			<option value="referencia"
+				{% if orden=="referencia" %}selected{% endif %}
+			>
+				Ordenar por Referencia
+			</option>
+
+			<option value="ubicacion"
+				{% if orden=="ubicacion" %}selected{% endif %}
+			>
+				Ordenar por Ubicación
+			</option>
+
+			<option value="tipo"
+				{% if orden=="tipo" %}selected{% endif %}
+			>
+				Ordenar por Tipo
+			</option>
+
+			<option value="epoca"
+				{% if orden=="epoca" %}selected{% endif %}
+			>
+				Ordenar por Época
+			</option>
+
+		</select>
+
+	</div>
+    
+	
+	<div class="col-md-2">
+
+        <button
+            class="btn btn-success w-100"
+            type="submit">
+            Filtrar
+        </button>
+
+    </div>
+
+    <div class="col-md-2">
+
+        <a
+            href="{{ url_for('articulos.lista') }}"
+            class="btn btn-secondary w-100">
+            Limpiar
+        </a>
+
+    </div>
+
+</div>
+
+</form>
+
+<div class="mb-3">
+
+    <a
+        class="btn btn-primary"
+        href="{{ url_for('articulos.importar') }}">
+        Importar Excel
+    </a>
+
+</div>
+
+<p>
+
+    <strong>{{ articulos|length }}</strong>
+
+    artículos encontrados
+
+</p>
+
+<div class="contenedor-fichas">
+
+{% for articulo in articulos %}
+
+<a
+    href="{{ url_for('articulos.detalle', numero=articulo.numero) }}"
+    style="text-decoration:none;color:inherit;"
+>
+
+    <div class="ficha">
+
+        {% if articulo.imagen %}
+
+        <img
+            src="{{ url_for('static', filename='imagenes/' ~ articulo.imagen) }}"
+            class="foto-tren"
+        >
+
+        {% else %}
+
+        <div class="sin-imagen">
+            SIN IMAGEN
+        </div>
+
+        {% endif %}
+
+        <div class="ficha-contenido">
+
+            <div class="titulo-ficha">
+                {{ articulo.descripcion }}
+            </div>
+
+            <div class="datos-grid">
+
+                <div class="campo">
+                    <b>Nº</b><br>
+                    {{ articulo.numero }}
+                </div>
+
+                <div class="campo">
+                    <b>Marca</b><br>
+                    {{ articulo.marca }}
+                </div>
+
+                <div class="campo">
+                    <b>Referencia</b><br>
+                    {{ articulo.referencia }}
+                </div>
+
+                <div class="campo">
+                    <b>Ubicación</b><br>
+                    {{ articulo.ubicacion }}
+                </div>
+
+                <div class="campo">
+                    <b>Época</b><br>
+                    {{ articulo.epoca }}
+                </div>
+
+                <div class="campo">
+                    <b>Tipo</b><br>
+                    {{ articulo.tipo }}
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</a>
+
+{% endfor %}
+
+</div>
+
+{% if articulos|length == 0 %}
+
+<div class="alert alert-warning mt-4">
+    No se encontraron artículos.
+</div>
+
+{% endif %}
+
+{% endblock %}

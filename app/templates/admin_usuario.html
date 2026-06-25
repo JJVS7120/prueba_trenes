@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>{{ usuario.username }}</h2>
+
+<p>
+
+    Email:
+    {{ usuario.email }}
+
+</p>
+
+<p>
+
+    Total artículos:
+    <strong>{{ articulos|length }}</strong>
+
+</p>
+
+<table class="table table-striped">
+
+    <thead>
+
+        <tr>
+
+            <th>Nº</th>
+
+            <th>Referencia</th>
+
+            <th>Marca</th>
+
+            <th>Descripción</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+    {% for articulo in articulos %}
+
+        <tr>
+
+            <td>{{ articulo.numero }}</td>
+
+            <td>{{ articulo.referencia }}</td>
+
+            <td>{{ articulo.marca }}</td>
+
+            <td>{{ articulo.descripcion }}</td>
+
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

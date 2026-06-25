@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Editar Ficha Maestra</h2>
+
+<form method="POST">
+
+<div class="card">
+
+    <div class="card-body">
+
+        <div class="row">
+
+            <div class="col-md-6 mb-3">
+                <label>Referencia</label>
+                <input
+                    type="text"
+                    name="referencia"
+                    class="form-control"
+                    value="{{ ficha.referencia or '' }}"
+                >
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label>Marca</label>
+                <input
+                    type="text"
+                    name="marca"
+                    class="form-control"
+                    value="{{ ficha.marca or '' }}"
+                >
+            </div>
+
+            <div class="col-md-12 mb-3">
+                <label>Descripción</label>
+                <input
+                    type="text"
+                    name="descripcion"
+                    class="form-control"
+                    value="{{ ficha.descripcion or '' }}"
+                >
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label>Matrícula</label>
+                <input
+                    type="text"
+                    name="matricula"
+                    class="form-control"
+                    value="{{ ficha.matricula or '' }}"
+                >
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label>Matrícula II</label>
+                <input
+                    type="text"
+                    name="matricula_ii"
+                    class="form-control"
+                    value="{{ ficha.matricula_ii or '' }}"
+                >
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label>Época</label>
+                <input
+                    type="text"
+                    name="epoca"
+                    class="form-control"
+                    value="{{ ficha.epoca or '' }}"
+                >
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label>Tipo</label>
+                <input
+                    type="text"
+                    name="tipo"
+                    class="form-control"
+                    value="{{ ficha.tipo or '' }}"
+                >
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <label>Ejes</label>
+                <input
+                    type="text"
+                    name="ejes"
+                    class="form-control"
+                    value="{{ ficha.ejes or '' }}"
+                >
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label>Administración</label>
+                <input
+                    type="text"
+                    name="administracion"
+                    class="form-control"
+                    value="{{ ficha.administracion or '' }}"
+                >
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label>Librea</label>
+                <input
+                    type="text"
+                    name="librea"
+                    class="form-control"
+                    value="{{ ficha.librea or '' }}"
+                >
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label>Clasificación</label>
+                <input
+                    type="text"
+                    name="clasificacion"
+                    class="form-control"
+                    value="{{ ficha.clasificacion or '' }}"
+                >
+            </div>
+
+            <div class="col-md-6 mb-3">
+                <label>Mercancía</label>
+                <input
+                    type="text"
+                    name="mercancia"
+                    class="form-control"
+                    value="{{ ficha.mercancia or '' }}"
+                >
+            </div>
+
+            <div class="col-md-12 mb-3">
+                <label>Necesidades</label>
+                <textarea
+                    name="necesidades"
+                    class="form-control"
+                    rows="3"
+                >{{ ficha.necesidades or '' }}</textarea>
+            </div>
+
+        </div>
+
+        <button
+            type="submit"
+            class="btn btn-success">
+            Guardar cambios
+        </button>
+
+        <a
+            href="{{ url_for('main.maestro_detalle', id=ficha.id) }}"
+            class="btn btn-secondary">
+            Cancelar
+        </a>
+
+    </div>
+
+</div>
+
+</form>
+
+{% endblock %}

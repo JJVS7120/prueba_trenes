@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Ficha Maestra</h2>
+
+<div class="card">
+
+    <div class="card-body">
+
+        <table class="table">
+
+            <tr>
+                <th>Referencia</th>
+                <td>{{ ficha.referencia }}</td>
+            </tr>
+
+            <tr>
+                <th>Marca</th>
+                <td>{{ ficha.marca }}</td>
+            </tr>
+
+            <tr>
+                <th>Descripción</th>
+                <td>{{ ficha.descripcion }}</td>
+            </tr>
+
+            <tr>
+                <th>Matrícula</th>
+                <td>{{ ficha.matricula }}</td>
+            </tr>
+
+            <tr>
+                <th>Matrícula II</th>
+                <td>{{ ficha.matricula_ii }}</td>
+            </tr>
+
+            <tr>
+                <th>Época</th>
+                <td>{{ ficha.epoca }}</td>
+            </tr>
+
+            <tr>
+                <th>Caja</th>
+                <td>{{ ficha.caja }}</td>
+            </tr>
+
+            <tr>
+                <th>Tipo</th>
+                <td>{{ ficha.tipo }}</td>
+            </tr>
+
+            <tr>
+                <th>Ejes</th>
+                <td>{{ ficha.ejes }}</td>
+            </tr>
+
+            <tr>
+                <th>Rodaje</th>
+                <td>{{ ficha.rodaje }}</td>
+            </tr>
+
+            <tr>
+                <th>Administración</th>
+                <td>{{ ficha.administracion }}</td>
+            </tr>
+
+            <tr>
+                <th>Librea</th>
+                <td>{{ ficha.librea }}</td>
+            </tr>
+
+        </table>
+
+        <a
+            href="{{ url_for('main.editar_maestro', id=ficha.id) }}"
+            class="btn btn-primary"
+        >
+            Editar
+        </a>
+
+        {% if ficha.validada %}
+
+            <a
+                href="{{ url_for('main.desvalidar_maestro', id=ficha.id) }}"
+                class="btn btn-warning"
+            >
+                Quitar validación
+            </a>
+
+        {% else %}
+
+            <a
+                href="{{ url_for('main.validar_maestro', id=ficha.id) }}"
+                class="btn btn-success"
+            >
+                Validar ficha
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

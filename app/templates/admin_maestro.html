@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Base General de Colecciones</h2>
+
+<form method="GET">
+
+<div class="row mb-3">
+
+    <div class="col-md-4">
+
+        <input
+            type="text"
+            name="buscar"
+            class="form-control"
+            placeholder="Referencia o descripción"
+            value="{{ buscar }}"
+        >
+
+    </div>
+
+    <div class="col-md-2">
+
+        <select name="marca" class="form-control">
+
+            <option value="">Marca</option>
+
+            {% for m in marcas %}
+
+            <option
+                value="{{ m[0] }}"
+                {% if marca == m[0] %}selected{% endif %}
+            >
+                {{ m[0] }}
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+    </div>
+
+    <div class="col-md-2">
+
+        <select name="tipo" class="form-control">
+
+            <option value="">Tipo</option>
+
+            {% for t in tipos %}
+
+            <option
+                value="{{ t[0] }}"
+                {% if tipo == t[0] %}selected{% endif %}
+            >
+                {{ t[0] }}
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+    </div>
+
+    <div class="col-md-2">
+
+        <select name="epoca" class="form-control">
+
+            <option value="">Época</option>
+
+            {% for e in epocas %}
+
+            <option
+                value="{{ e[0] }}"
+                {% if epoca == e[0] %}selected{% endif %}
+            >
+                {{ e[0] }}
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+    </div>
+
+    <div class="col-md-2">
+
+        <button
+            class="btn btn-success w-100"
+            type="submit"
+        >
+            Filtrar
+        </button>
+
+    </div>
+
+</div>
+
+</form>
+
+<p>
+
+<strong>{{ fichas|length }}</strong>
+
+referencias en la base maestra
+
+</p>
+
+<table class="table table-striped table-hover">
+
+<thead>
+
+<tr>
+
+    <th>Referencia</th>
+    <th>Marca</th>
+    <th>Descripción</th>
+    <th>Usuarios</th>
+    <th>Estado</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for ficha in fichas %}
+
+<tr>
+
+    <td>
+
+        <a href="{{ url_for('main.maestro_detalle', id=ficha.id) }}">
+            {{ ficha.referencia }}
+        </a>
+
+    </td>
+
+    <td>{{ ficha.marca }}</td>
+
+    <td>{{ ficha.descripcion }}</td>
+
+    <td>
+
+        {% for usuario in ficha_articulos[ficha.id] %}
+
+			{{ usuario }}
+
+			{% if not loop.last %}
+        ,
+			{% endif %}
+
+		{% endfor %}
+
+    </td>
+
+    <td>
+
+        {% if ficha.validada %}
+
+            <span class="badge bg-success">
+
+                VALIDADA
+
+            </span>
+
+        {% else %}
+
+            <span class="badge bg-warning">
+
+                PENDIENTE
+
+            </span>
+
+        {% endif %}
+
+    </td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}

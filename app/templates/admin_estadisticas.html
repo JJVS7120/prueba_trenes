@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Estadísticas Globales</h2>
+
+<div class="row mb-4">
+
+    <div class="col-md-2">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3>{{ total_usuarios }}</h3>
+                <p>Usuarios</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3>{{ total_articulos }}</h3>
+                <p>Artículos</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3>{{ total_referencias }}</h3>
+                <p>Referencias</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3>{{ total_marcas }}</h3>
+                <p>Marcas</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3>{{ total_ubicaciones }}</h3>
+                <p>Ubicaciones</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-4">
+
+        <div class="card mb-4">
+
+            <div class="card-header">
+                Ranking de Marcas
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-sm">
+
+                    {% for marca,cantidad in ranking_marcas %}
+
+                    <tr>
+                        <td>{{ marca }}</td>
+                        <td>{{ cantidad }}</td>
+                    </tr>
+
+                    {% endfor %}
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card mb-4">
+
+            <div class="card-header">
+                Ranking de Tipos
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-sm">
+
+                    {% for tipo,cantidad in ranking_tipos %}
+
+                    <tr>
+                        <td>{{ tipo }}</td>
+                        <td>{{ cantidad }}</td>
+                    </tr>
+
+                    {% endfor %}
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card mb-4">
+
+            <div class="card-header">
+                Ranking de Ubicaciones
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-sm">
+
+                    {% for ubicacion,cantidad in ranking_ubicaciones %}
+
+                    <tr>
+                        <td>{{ ubicacion }}</td>
+                        <td>{{ cantidad }}</td>
+                    </tr>
+
+                    {% endfor %}
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="card">
+
+    <div class="card-header">
+        Últimos artículos incorporados
+    </div>
+
+    <div class="card-body">
+
+        <table class="table">
+
+            <thead>
+
+                <tr>
+                    <th>Número</th>
+                    <th>Referencia</th>
+                    <th>Marca</th>
+                    <th>Descripción</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for articulo in ultimos %}
+
+                <tr>
+
+                    <td>{{ articulo.numero }}</td>
+
+                    <td>{{ articulo.referencia }}</td>
+
+                    <td>{{ articulo.marca }}</td>
+
+                    <td>{{ articulo.descripcion }}</td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

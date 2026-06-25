@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="text-center mt-5">
+
+    <h1>🚆 Sistema de Gestión de Trenes</h1>
+
+    <p class="lead">
+        Proyecto Flask con usuarios, roles y administración.
+    </p>
+
+    {% if current_user.is_authenticated %}
+
+        <a href="/dashboard" class="btn btn-primary">
+            Ir al Dashboard
+        </a>
+
+    {% else %}
+
+        <a href="/login" class="btn btn-success me-2">
+            Iniciar sesión
+        </a>
+
+        <a href="/register" class="btn btn-outline-primary">
+            Registrarse
+        </a>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<a class="btn btn-secondary mb-3"
+   href="{{ url_for('articulos.lista') }}">
+    ← Volver al inventario
+</a>
+
+<div class="card shadow">
+
+    <div class="card-header">
+
+        <h2>
+            {{ articulo.descripcion }}
+        </h2>
+
+    </div>
+
+    <div class="card-body">
+
+        <div class="row">
+
+            <!-- IMAGEN -->
+
+            <div class="col-md-5 text-center">
+
+                {% if articulo.imagen %}
+
+                <img
+                    src="{{ url_for('static', filename='imagenes/' ~ articulo.imagen) }}"
+                    class="img-fluid rounded"
+                    style="max-height:500px;"
+                >
+
+                {% else %}
+
+                <div class="alert alert-secondary">
+                    SIN IMAGEN
+                </div>
+
+                {% endif %}
+
+            </div>
+
+            <!-- DATOS -->
+
+            <div class="col-md-7">
+
+                <div class="row g-2">
+
+                    <div class="col-6">
+                        <b>Número</b><br>
+                        {{ articulo.numero }}
+                    </div>
+
+                    <div class="col-6">
+                        <b>Lista Orden</b><br>
+                        {{ articulo.lista_orden }}
+                    </div>
+
+                    <div class="col-6">
+                        <b>Marca</b><br>
+                        {{ articulo.marca }}
+                    </div>
+
+                    <div class="col-6">
+                        <b>Referencia</b><br>
+                        {{ articulo.referencia }}
+                    </div>
+
+                    <div class="col-6">
+                        <b>Ubicación</b><br>
+                        {{ articulo.ubicacion }}
+                    </div>
+
+                    <div class="col-6">
+                        <b>Set</b><br>
+                        {{ articulo.set_modelo }}
+                    </div>
+
+                    <div class="col-6">
+                        <b>Matrícula</b><br>
+                        {{ articulo.matricula }}
+                    </div>
+
+                    <div class="col-6">
+                        <b>Matrícula II</b><br>
+                        {{ articulo.matricula_ii }}
+                    </div>
+
+                    <div class="col-6">
+                        <b>Época</b><br>
+                        {{ articulo.epoca }}
+                    </div>
+
+                    <div class="col-6">
+                        <b>Caja</b><br>
+                        {{ articulo.caja }}
+                    </div>
+
+                    <div class="col-6">
+                        <b>Unidades</b><br>
+                        {{ articulo.unidades }}
+                    </div>
+
+                    <div class="col-6">
+                        <b>Tipo</b><br>
+                        {{ articulo.tipo }}
+                    </div>
+
+                    <div class="col-6">
+                        <b>Ejes</b><br>
+                        {{ articulo.ejes }}
+                    </div>
+
+                    <div class="col-6">
+                        <b>Rodaje</b><br>
+                        {{ articulo.rodaje }}
+                    </div>
+
+                    <div class="col-6">
+                        <b>Longitud</b><br>
+                        {{ articulo.longitud }}
+                    </div>
+
+                    <div class="col-6">
+                        <b>Administración</b><br>
+                        {{ articulo.administracion }}
+                    </div>
+
+                    <div class="col-6">
+                        <b>Librea</b><br>
+                        {{ articulo.librea }}
+                    </div>
+
+                    <div class="col-6">
+                        <b>Envejecido</b><br>
+                        {{ articulo.envejecido }}
+                    </div>
+
+                    <div class="col-6">
+                        <b>Clasificación</b><br>
+                        {{ articulo.clasificacion }}
+                    </div>
+
+                    <div class="col-6">
+                        <b>Mercancía</b><br>
+                        {{ articulo.mercancia }}
+                    </div>
+
+                    <div class="col-6">
+                        <b>Estado</b><br>
+                        {{ articulo.estado }}
+                    </div>
+
+                    <div class="col-6">
+                        <b>Rodaje detalle</b><br>
+                        {{ articulo.rodaje_detalle }}
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <h5>Necesidades</h5>
+
+                <div class="alert alert-light">
+
+                    {{ articulo.necesidades }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

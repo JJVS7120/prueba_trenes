@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- Usuario info -->
+<div class="card mb-4">
+  <div class="card-body">
+    <h2>Dashboard</h2>
+
+    <p><strong>Usuario:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Rol:</strong> {{ user.role }}</p>
+
+    {% if user.role == "admin" %}
+      <a class="btn btn-warning mt-2" href="/admin">
+        Ir al panel admin
+      </a>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Estadísticas -->
+<div class="row text-center">
+
+  <div class="col-md-4 mb-3">
+    <div class="card">
+      <div class="card-body">
+        <h5>Total usuarios</h5>
+        <h2>{{ total_users }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-3">
+    <div class="card">
+      <div class="card-body">
+        <h5>Admins</h5>
+        <h2>{{ total_admins }}</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 mb-3">
+    <div class="card">
+      <div class="card-body">
+        <h5>Usuarios normales</h5>
+        <h2>{{ total_normal }}</h2>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}
